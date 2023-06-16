@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>List All</title>
+
+
+</head>
+<body>
+<main>
+  <h1>List All</h1>
+  <table th:unless="${#lists.isEmpty(pets)}">
+    <tr>
+      <th>Count</th>
+      <th>Name</th>
+      <th>Kind</th>
+      <th>Sex</th>
+      <th>Options</th>
+    </tr>
+    <tr th:each="pet, count: ${pets}">
+      <td th:text="${count.count}">1</td>
+      <td th:text="${pets.name}">Tom</td>
+      <td th:text="${pets.kind}">Dog</td>
+      <td th:text="${pets.sex}">Male</td>
+      <td>
+        <a href="PetDetails.html" th:href="@{/pet-details/{id}(id=${pets.id})}">Details</a>
+        &nbsp;|&nbsp;
+        <a href="EditPet.html" th:href="@{/edit-pet(id=${pets.id})}">Edit</a>
+        &nbsp;|&nbsp;
+        <a href="DeletePet.html" th:href="@{/delete-pet(id=${pets.id})}">Delete</a>
+      </td>
+    </tr>
+  </table>
+  <p class="message" th:if="${#lists.isEmpty(pets)}">No pet data</p>
+  <p><a href="Index.html" th:href="@{/index}">Index</a></p>
+  <p><a href="AddPetDetails.html.html" th:href="@{/add-pet}">Add Pet</a></p>
+  <p><a href="DeletePet.html" th:href="@{/delete-all-pets}">Delete All</a></p>
+</main>
+</body>
+</html>

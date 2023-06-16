@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>Delete Record</title>
+
+  <script th:src="@{/js/footer.js}" src="../static/js/footer.js"></script>
+</head>
+<body>
+<main>
+  <h1>Delete Record</h1>
+  <p class="message">Are you sure you want to remove this record?</p>
+  <h2>Record Data:</h2>
+  <div th:object="${pet}">
+    <p>
+      <label class="group_label">Name:</label>
+      <span class="output" th:text="*{pets.name}">Bart</span>
+    </p>
+    <p>
+      <label class="group_label">Kind:</label>
+      <span class="output" th:text="*{pets.kind}">Simpson</span>
+    </p>
+    <p>
+      <label class="group_label">Sex:</label>
+      <span class="output" th:text="*{pets.sex}">Male</span>
+    </p>
+    <p>
+      <label class="group_label">Vaccinated:</label>
+      <span class="output" th:text="*{pets.vaccinated}?'Yes':'No'">Yes</span>
+    </p>
+  </div>
+  <form method="post" th:action="@{/delete/{id}(id=${pets.id})}">
+    <input type="submit" value="Remove Record">
+  </form>
+
+  <p><a href="Index.html" th:href="@{/index}">Index</a></p>
+  <p><a href="AddPet.html" th:href="@{/add-pet}">Add Pet</a></p>
+  <p><a href="ListPets.html" th:href="@{/list-pets}">List Pets</a></p>
+</main>
+</body>
+</html>

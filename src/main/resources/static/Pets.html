@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Pets Application</title>
+  <link rel="stylesheet" th:href="@{/css/style.css}" />
+</head>
+<body>
+<h1>Pets</h1>
+<table>
+  <thead>
+  <tr>
+    <th>Name</th>
+    <th>Kind</th>
+    <th>Sex</th>
+    <th>Vaccinated</th>
+    <th>Edit</th>
+    <th>Delete</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="pet : ${pets}">
+    <td th:text="${pet.name}"></td>
+    <td th:text="${pet.kind}"></td>
+    <td th:text="${pet.sex}"></td>
+    <td th:text="${pet.vaccinated ? 'Yes' : 'No'}"></td>
+    <td><a th:href="@{/edit/{id}(id=${pet.id})}">Edit</a></td>
+    <td><a th:href="@{/delete/{id}(id=${pet.id})}">Delete</a></td>
+  </tr>
+  </tbody>
+</table>
+<a href="/add">Add Pet</a>
+</body>
+</html>
+
